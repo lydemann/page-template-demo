@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
         <mat-card-subtitle>{{ errorMessage }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions>
-        <button mat-button color="primary" (click)="onRetry()">RETRY</button>
+        <button mat-button color="primary" (click)="retry.emit()">RETRY</button>
       </mat-card-actions>
     </mat-card>
   `,
@@ -30,9 +30,5 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ErrorComponent {
   @Input() errorMessage: string = 'An error occurred. Please try again.';
-
-  onRetry() {
-    // Implement retry logic here
-    console.log('Retry clicked');
-  }
+  retry = output<void>();
 }
